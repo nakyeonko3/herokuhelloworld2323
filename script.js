@@ -7,7 +7,6 @@ const iwantTODO = [
   '친구들이랑 놀러 가기',
   '파파존스 피자 사먹기',
 ];
-const num = localStorage.getItem('count');
 
 for (let i = 0; i < 14; i++) {
   iwantTODO.push('더 열심히 웹개발 공부하기');
@@ -23,10 +22,12 @@ function mathRandomInt(max) {
 }
 
 function init(num) {
-  span.innerText = localStorage.getItem('iwantTODO');
-  divCount.innerHTML = `count:${num}`;
-  button.addEventListener('click', handleClick);
-  restButton.addEventListener('click', resetAll);
+  function setInitalWebPage() {
+    span.innerText = localStorage.getItem('iwantTODO');
+    divCount.innerHTML = `count:${num}`;
+    button.addEventListener('click', handleClick);
+    restButton.addEventListener('click', resetAll);
+  }
 
   function resetAll(event) {
     event.preventDefault();
@@ -52,6 +53,9 @@ function init(num) {
     span.innerText = iwantTODO[mathRandomInt(iwantTODO.length)];
     localStorage.setItem('iwantTODO', span.innerText);
   }
+
+  setInitalWebPage();
 }
 
+const num = localStorage.getItem('count') ?? 0;
 init(num);
